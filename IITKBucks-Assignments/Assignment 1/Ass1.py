@@ -13,7 +13,7 @@ def compare(inp, tar):
 		i+=2
 	return False
 if(len(sys.argv)!=2):
-	print("USAGE : python <string>")
+	print("USAGE : python Ass1.py <string>")
 	sys.exit()
 inp = sys.argv[1]
 i=0
