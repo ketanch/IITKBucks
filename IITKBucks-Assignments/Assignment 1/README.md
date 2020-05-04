@@ -2,4 +2,4 @@ This program returns the least integer such that sha256({inp-string}{integer}) <
 
 USE:
 
-python Ass1.py <string>
+python Ass1.py string
