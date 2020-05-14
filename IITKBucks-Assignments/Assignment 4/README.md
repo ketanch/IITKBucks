@@ -32,7 +32,7 @@ Number of outputs: <an integer>
 ```
 ass3.py and ass4.py use the same header file **header.py** and make sure that ass4.py is in the same directory as header.py.
 
-A sample output is:
+A sample output for attached .dat file is:
 ```
 Enter file path: 850ee1786e12d255b268a7f6ee0c125166e7dc9a0ee666e8bb14c00522812797.dat
 Transaction ID:  850ee1786e12d255b268a7f6ee0c125166e7dc9a0ee666e8bb14c00522812797
