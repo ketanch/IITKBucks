@@ -20,7 +20,7 @@ for i in range(no_of_out):
     print(i+1,".")
     coin = input("Enter no of coins: ")
     path_to_pub = input("Enter path to public key: ")
-    new_obj = header.Output(coin, path_to_pub)
+    new_obj = header.Output(coin, path_to_pub=path_to_pub)
     if(not new_obj.isValid()):
         sys.exit()
     output_arr.append(new_obj)
