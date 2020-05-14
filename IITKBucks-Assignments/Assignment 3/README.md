@@ -9,7 +9,7 @@ Format of a transaction is:
 ><no_of_input><input_data><no_of_output><output_data>
 
 <input_data> has format:
-><transaction_ID><index_of_output><length_of_signature><signature>
+><transaction_ID><index_of_output><length_of_signature><_signature>
 
 <output_data> has format:
 ><no_of_coins><length_of_public_key><public_key>
