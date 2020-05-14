@@ -31,3 +31,62 @@ Number of outputs: <an integer>
         Public key: <in PEM format>
 ```
 ass3.py and ass4.py use the same header file **header.py** and make sure that ass4.py is in the same directory as header.py
+A sample output is:
+```
+Enter file path: 850ee1786e12d255b268a7f6ee0c125166e7dc9a0ee666e8bb14c00522812797.dat
+Transaction ID:  850ee1786e12d255b268a7f6ee0c125166e7dc9a0ee666e8bb14c00522812797
+
+Number of inputs:  3
+  Input 1:
+	Transacction ID:  75b41c3abfab2586ac914ac7ac9adb9a3b9713ee8cc59d3123e8109a460e0a63
+	Index:  1
+	Length of the signature:  128
+	Signature:  3fb58651e04cf02f2008827c7c793edb1c92eefd7476971ebb97fcbb5982bd2921f8db92ddfbc0470a8b7e5f39f80980fb712dfdd74050fddd8ae1bc9b55bb83e54410d5e0702ad2d1682307bd695712c06634fecac1a9882f8ef6e82cc8b7033d82387eb8f1df068cd9230dbd94d5dcaaec2034a6db41581c22fee08820e50a
+
+
+  Input 2:
+	Transacction ID:  75b41c3abfab2586ac914ac7ac9adb9a3b9713ee8cc59d3123e8109a46385309
+	Index:  2
+	Length of the signature:  128
+	Signature:  2d1aea1d3c810ce7cf629e8be7eda672cab45cdb4ab3842147f6b041a5a0434b1edf3c17f1ce3220ac12cef326288aba69e5a2a74bc6f6da563a533c2e1b69523dfb6f5e0a2cb9215434eca6b9871732e1e916be8e99d963e8b1cc1e7d2817124b3e178dd937887f17630e6096c08deb9bbdccef417de74c7916e98840d5fc4d
+
+
+  Input 3:
+	Transacction ID:  75b41c3abfab2586ac914ac7ac9adb9a3b9713ee8cc59d3123e8109a460e0a63
+	Index:  3
+	Length of the signature:  128
+	Signature:  2d1aea1d3c810ce7cf629e8be7eda672cab45cdb4ab3842147f6b041a5a0434b1edf3c17f1ce3220ac12cef326288aba69e5a2a74bc6f6da563a533c2e1b69523dfb6f5e0a2cb9215434eca6b9871732e1e916be8e99d963e8b1cc1e7d2817124b3e178dd937887f17630e6096c08deb9bbdccef417de74c7916e98840d53456
+
+
+
+Number of outputs:  2
+  Output 1
+	No of coins:  1234
+	Length of public key:  450
+	Public Key:
+ -----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtBMhnn9iUvgUPjjJYcU5
+j4ZiMPDtX8tZKso7Zc/c/eefRw6egPqTnbSc50IrGDWxeyD6C/CDMRjPnx4EsL24
+WTEvOVlin0Z6ho9uLxhU5vglQ/KJhdBI2kQMiSQagZW42lg3ivqCy2eIYydu7ytN
+RPdKVI3R4EzNGlhtJZa5VS+rEZvtVxYY0KoxYf9H/qspNX58/qdbt8R4yowaGKiD
+OZ1jBp8dogR+EMKegB1W+Wt6k2gLmmVmD95lqpnL0NesdCNClQzVZHYx6URjK0yV
+2plAOUaxSFNGcapioZfOmmOm3oLpSOgIONDjDWSTpHH6z4yv1xDvj4cHIzBtRAKw
+bwIDAQAB
+-----END PUBLIC KEY-----
+
+
+  Output 2
+	No of coins:  5668
+	Length of public key:  450
+	Public Key:
+ -----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAniZmbFaxCN9lvDmKTzEQ
+bjZVveyguYYm+t39T0UINd5kZR8Y15CojBvLeZ23/CoDMfLNcgJa+GQvK1AHT1gU
+07Nxkh+2JobashBw15Ko42aDybwCyUhH7coKXryw0IzPSvi/LqLeJYl8PkBx1/Dy
+FG2ugNwKwhhflfZf8soRkCsS3lqjniEz3KAS3YGV1NDY9BL5l5MvVd1MA5gXqR0f
+KcQifxGTay12KvlEh4N7hMtkiHsjlEm1OlFFzvrWWzHwrqUzCRDBPF4IYdrLLYL+
+Rf6FdooC2af5wPA+cvayI2RULuv07PGcbos3ib9FPBdJGDFxVlYfgt3NEYUwyASU
+VwIDAQAB
+-----END PUBLIC KEY-----
+
+```
