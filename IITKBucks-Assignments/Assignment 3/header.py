@@ -2,11 +2,11 @@ import os.path
 from os import path
 
 class Input:
-    def __init__(self, transaction_ID, arr_index, sign):
+    def __init__(self, transaction_ID, arr_index, sign, len_sign=None):
         self.transaction_ID = transaction_ID
         self.arr_index = arr_index
         self.sign = sign
-        self.len_sign = None
+        self.len_sign = len_sign
 
     def show(self):
         print("\tTransacction ID: ", self.transaction_ID)
@@ -34,15 +34,16 @@ class Input:
             print("\nSignature is not valid.\n")
             return False
         self.arr_index = int(self.arr_index)
-        self.len_sign = len(self.sign)//2
+        if self.len_sign == None:
+            self.len_sign = len(self.sign)//2
         return True
 
 class Output:
-    def __init__(self, coin, path_to_pub):
+    def __init__(self, coin, pub_key=None, key_len=None, path_to_pub=None,):
         self.coin = coin
         self.path_to_pub = path_to_pub
-        self.pub_key = None
-        self.key_len = None
+        self.pub_key = pub_key
+        self.key_len = key_len
 
     def show(self):
         print("\tNo of coins: ", self.coin)
@@ -82,5 +83,33 @@ def transactionToByteArray(trans):
         data += i.generateByte()
     return data
 
-def transactionFromByteArray(trans_byte):
-    pass
+def transactionFromByteArray(trans_data):
+    offset = 0
+    in_arr = []
+    out_arr = []
+    no_of_input = int.from_bytes(trans_data[:4], 'big')
+    offset += 4
+    for i in range(no_of_input):
+        trans_ID = trans_data[offset:offset+32].hex()
+        offset += 32
+        index = int.from_bytes(trans_data[offset:offset+4], 'big')
+        offset +=4
+        sign_len = int.from_bytes(trans_data[offset:offset+4], 'big')
+        offset +=4
+        sign = trans_data[offset:offset+sign_len].hex()
+        offset += sign_len
+        inp_obj = Input(trans_ID, index, sign, sign_len)
+        in_arr.append(inp_obj)
+
+    no_of_output = int.from_bytes(trans_data[offset:offset+4], 'big')
+    offset += 4
+    for i in range(no_of_output):
+        coins = int.from_bytes(trans_data[offset:offset+8], 'big')
+        offset +=8
+        key_len = int.from_bytes(trans_data[offset:offset+4], 'big')
+        offset +=4
+        key = trans_data[offset:offset+key_len].decode()
+        offset += key_len
+        out_obj = Output(coins, key, key_len)
+        out_arr.append(out_obj)
+    return [in_arr, out_arr]
