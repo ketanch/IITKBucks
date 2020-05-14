@@ -20,10 +20,13 @@ for i in range(no_of_out):
         sys.exit()
     output_arr.append(new_obj)
 
-new_transaction = header.Transaction(input_arr, output_arr)
-file_data = header.transactionToByteArray(new_transaction)
-file_hash = hashlib.sha256(file_data).hexdigest()+".dat"
-file_out = open(file_hash, 'wb')
-file_out.write(file_data)
-file_out.close()
-print("\nTransaction made successfully")
+try:
+    new_transaction = header.Transaction(input_arr, output_arr)
+    file_data = header.transactionToByteArray(new_transaction)
+    file_hash = hashlib.sha256(file_data).hexdigest()+".dat"
+    file_out = open(file_hash, 'wb')
+    file_out.write(file_data)
+    file_out.close()
+    print("\nTransaction made successfully")
+except:
+    print("\nSome error occured while making transaction.")
