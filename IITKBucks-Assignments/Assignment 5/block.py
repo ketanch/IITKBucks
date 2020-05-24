@@ -40,4 +40,4 @@ class BlockHeaderMake:
             self.timestamp = time.time()
             if int(self.HeaderHash(),16) <= int(self.target,16):
                 break
-        return [self.nonce, self.timestamp]
+        return [self.nonce, self.timestamp, self.HeaderHash()]
