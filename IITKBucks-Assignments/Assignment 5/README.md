@@ -1,5 +1,5 @@
 # Task 5
-This program and timestamp for a block header.
+This program finds nonce and timestamp for a block header.
 Some samples are:
 ```
 Hash: 000000040747e73f087252b7acd5f7987fb34e11c7b15ff3c45a07d254016f42
