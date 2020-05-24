@@ -14,4 +14,4 @@ Nonce: 422396684
 Timestamp: 1590344381.790581
 Time: 23m 54s
 ```
-These are my last 2 readings. My first nonce calculation took 38min but addcidently I deleted the data.
+These are my last 2 readings. My first nonce calculation took 38min but accidently I deleted the data.
