@@ -44,7 +44,7 @@ def _add():
 
 @app.route('/list', methods=["GET"])
 def _list():
-    write_data = "HOST : {} : Database sent to client.\n".format(request.remote_addr)
+    write_data = "CLIENT : {} : Database sent to client.\n".format(request.remote_addr)
     update_log(write_data)
     return jsonify(dictionary)
 
