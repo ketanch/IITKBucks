@@ -24,15 +24,15 @@ def _add():
         key = req_data['key']
         value = req_data['value']
     except:
-        write_data = "HOST : {} : Data received in invalid format.\n".format(request.remote_addr)
+        write_data = "CLIENT : {} : Data received in invalid format.\n".format(request.remote_addr)
         update_log(write_data)
         return "Invalid format sent!"
     if key in dictionary.keys():
-        write_data = "HOST : {} : Key sent {} already existed.\n".format(request.remote_addr, key)
+        write_data = "CLIENT : {} : Key sent {} already existed.\n".format(request.remote_addr, key)
         resp = "Value already exists."
     else :
         dictionary[key] = value
-        write_data = "HOST : {} : Key-value {}:\'{}\' added.\n".format(request.remote_addr, key, value)
+        write_data = "CLIENT : {} : Key-value {}:\'{}\' added.\n".format(request.remote_addr, key, value)
         resp = "Successfully added."
         print("Updated database:\n",dictionary)
         write_data += "Sending request to peers...\n"
@@ -44,7 +44,7 @@ def _add():
 
 @app.route('/list', methods=["GET"])
 def _list():
-    write_data = "HOST : {} : Database sent.\n".format(request.remote_addr)
+    write_data = "HOST : {} : Database sent to client.\n".format(request.remote_addr)
     update_log(write_data)
     return jsonify(dictionary)
 
