@@ -27,7 +27,6 @@ def _add():
         write_data = "HOST : {} : Data received in invalid format.\n".format(request.remote_addr)
         update_log(write_data)
         return "Invalid format sent!"
-    resp = ''
     if key in dictionary.keys():
         write_data = "HOST : {} : Key sent {} already existed.\n".format(request.remote_addr, key)
         resp = "Value already exists."
