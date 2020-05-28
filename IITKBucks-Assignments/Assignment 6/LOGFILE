@@ -1,3 +1,5 @@
+##Sample logfile##
+
 HOST : 127.0.0.1 : Key-value 2:'helo' added.
 Sending request to peers...
 	HOST : http://localhost:12346/add : Status code : 200 : Received : Value already exists.
