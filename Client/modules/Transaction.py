@@ -66,7 +66,7 @@ def transactionFromByteArray(trans_data):
         offset +=4
         key = trans_data[offset:offset+key_len].decode()
         offset += key_len
-        out_obj = Output(coins, key, key_len)
+        out_obj = Output(coins, key)
         out_arr.append(out_obj)
     return [in_arr, out_arr]
 
