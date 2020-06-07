@@ -2,6 +2,8 @@ from Crypto.PublicKey import RSA
 from Crypto.Hash import SHA256
 from Crypto.Signature import PKCS1_PSS
 import hashlib
+from Input import Input
+from Output import Output
 
 class Transaction:
     def __init__(self, inp_arr, out_arr):
