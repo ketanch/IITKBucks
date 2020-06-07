@@ -1,3 +1,8 @@
+from Crypto.PublicKey import RSA
+from Crypto.Hash import SHA256
+from Crypto.Signature import PKCS1_PSS
+import hashlib
+
 class Transaction:
     def __init__(self, inp_arr, out_arr):
         self.inp_arr = inp_arr
@@ -8,7 +13,7 @@ class Transaction:
         for i in trans.out_arr:
             data_out += i.generateByte()
         out_hash = hashlib.sha256(data_out)
-        if not all((i.transaction_ID, i.arr_index) in unused_trans for i in self.inp_arr):
+        if not all((i.transaction_ID, i.arr_index) in unused_trans.keys() for i in self.inp_arr):
             return False
         if not all(verify(unused_trans[(i.transaction_ID, i.arr_index)].pub_key, i.generateSign(out_hash), i.sign) for i in self.inp_arr):
             return False
@@ -49,7 +54,7 @@ def transactionFromByteArray(trans_data):
         offset +=4
         sign = trans_data[offset:offset+sign_len].hex()
         offset += sign_len
-        inp_obj = Input(trans_ID, index, sign, sign_len)
+        inp_obj = Input(trans_ID, index, sign)
         in_arr.append(inp_obj)
 
     no_of_output = int.from_bytes(trans_data[offset:offset+4], 'big')
