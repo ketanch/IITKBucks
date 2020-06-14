@@ -31,6 +31,16 @@ class Transaction:
 
     def getTransID(self):
         return hashlib.sha256(transactionToByteArray(self)).hexdigest()
+    
+    def as_json(self):
+        inp_data = []
+        out_data = []
+        for i in self.inp_arr:
+            inp_data.append(i.as_json())
+        for i in self.out_arr:
+            out_data.append(i.as_json())
+        json_data = {"input":inp_data, "output":out_data}
+        return json_data
 
 def transactionToByteArray(trans):
     data = len(trans.inp_arr).to_bytes(4,'big')
