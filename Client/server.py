@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, Response
-from models.BlockChain import BlockChain 
+from models.BlockChain import BlockChain, Block
 app = Flask(__name__)
 
 blockchain = BlockChain()
