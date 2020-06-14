@@ -15,3 +15,9 @@ class Output:
         byte_key_len = self.key_len.to_bytes(4, 'big')
         byte_final = byte_coin+byte_key_len+byte_pub_key
         return byte_final
+    
+    def as_json(self):
+        json_data = {}
+        json_data["amount"] = self.coin
+        json_data["recepient"] = self.pub_key
+        return json_data
