@@ -1,4 +1,4 @@
-from . import Block
+from . import Block, Transaction
 class BlockChain:
 
     def getPendingTransactions():
