@@ -24,3 +24,10 @@ class Input:
 
     def generateSignContent(self, out_hash):
         return bytes.fromhex(self.transaction_ID)+self.arr_index.to_bytes(4, 'big')+out_hash
+    
+    def as_json(self):
+        json_data = {}
+        json_data["transactionID"] = self.transaction_ID
+        json_data["index"] = self.arr_index
+        json_data["signature"] = self.sign
+        return json_data
