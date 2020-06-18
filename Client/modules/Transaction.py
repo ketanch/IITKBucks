@@ -42,8 +42,7 @@ class Transaction:
         json_data = {"input":inp_data, "output":out_data}
         return json_data
     
-    def from_json(self, json_data):
-        data = request.get_json()
+    def from_json(self, data):
         data_inp = data['input']
         data_out = data['output']
         for i in data_inp:
