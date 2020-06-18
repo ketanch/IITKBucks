@@ -43,7 +43,13 @@ class Transaction:
         return json_data
     
     def from_json(self, json_data):
-        
+        data = request.get_json()
+        data_inp = data['input']
+        data_out = data['output']
+        for i in data_inp:
+            self.inp_arr.append(Input(i['transactionID'], i['index'], i['signature']))
+        for i in data_out:
+            self.out_arr.append(Output(i['amount'], i['recepient']))
 
 def transactionToByteArray(trans):
     data = len(trans.inp_arr).to_bytes(4,'big')
