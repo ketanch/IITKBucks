@@ -6,7 +6,7 @@ from Input import Input
 from Output import Output
 
 class Transaction:
-    def __init__(self, inp_arr, out_arr):
+    def __init__(self, inp_arr = None, out_arr = None):
         self.inp_arr = inp_arr
         self.out_arr = out_arr
     
