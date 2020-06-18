@@ -41,6 +41,9 @@ class Transaction:
             out_data.append(i.as_json())
         json_data = {"input":inp_data, "output":out_data}
         return json_data
+    
+    def from_json(self, json_data):
+        
 
 def transactionToByteArray(trans):
     data = len(trans.inp_arr).to_bytes(4,'big')
