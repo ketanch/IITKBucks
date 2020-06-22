@@ -34,3 +34,18 @@ class Block:
         self.nonce = int.from_bytes(data[108:116],'big')
         self.body = data[116:]
         self.transactions = constructTransactions(self.body)
+        
+    def blockToByte(self):
+        data = (
+            self.index.to_bytes(4,'big')
+            + bytes.fromhex(self.parent_hash)
+            + bytes.fromhex(self.body_hash)
+            + bytes.fromhex(0self.target)
+            + struct.pack(">d", self.timestamp)
+            + self.nonce.to_bytes(8,'big')
+            + self.body
+        )
+        
+    def save(self):
+        with open('blocks/{}.dat'.format(self.index),'wb') as f:
+            f.write(self.blockToByte())
