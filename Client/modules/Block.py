@@ -3,7 +3,7 @@ import struct
 
 class Block:
 
-    def __init__(self, index=None, parent_hash=None, body_hash=None, target=None, timestamp=None, nonce=None, body=None, transactions=None):
+    def __init__(self, index=None, parent_hash=None, body_hash=None, target=None, timestamp=None, nonce=None, body=None, transactions=[]):
         self.index = index
         self.parent_hash = parent_hash
         self.body_hash = body_hash
