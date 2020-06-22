@@ -28,8 +28,9 @@ class Transaction:
         if out_coins > inp_coins:
             return False
         return True
-
-    def getTransID(self):
+    
+    @property
+    def id(self):
         return hashlib.sha256(transactionToByteArray(self)).hexdigest()
     
     def as_json(self):
