@@ -4,6 +4,7 @@ app = Flask(__name__)
 import requests
 from models.Block import Block
 from models.Transaction import Transaction
+from models.Verify import *
 from random import randint
 
 my_addr = '127.0.0.1'
@@ -100,6 +101,8 @@ def new_block():
     block_data = request.get_data()
     new_block = Block()
     new_block.blockFromByte(block_data)
+    if not verifyBlock(new_block):
+        return "Invalid Block sent!!", 500
     blockchain.chain.append(new_block)
     return "Block successfully added.", 200
 
