@@ -12,6 +12,16 @@ class Block:
         self.nonce = nonce
         self.body = body
         self.transactions = transactions
+        
+    def getHeader(self):
+        data = (
+            self.index.to_bytes(4,'big')
+            + bytes.fromhex(self.parent_hash)
+            + bytes.fromhex(self.body_hash)
+            + bytes.fromhex(self.target)
+            + struct.pack(">d", self.timestamp)
+            + self.nonce.to_bytes(8,'big')
+        )
 
     def constructTransactions(self, data):
         transactions = []
@@ -37,12 +47,7 @@ class Block:
         
     def blockToByte(self):
         data = (
-            self.index.to_bytes(4,'big')
-            + bytes.fromhex(self.parent_hash)
-            + bytes.fromhex(self.body_hash)
-            + bytes.fromhex(0self.target)
-            + struct.pack(">d", self.timestamp)
-            + self.nonce.to_bytes(8,'big')
+            self.getHeader()
             + self.body
         )
         
