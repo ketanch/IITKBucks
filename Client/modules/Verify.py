@@ -1,7 +1,7 @@
 from Block import block
 from BlockChain import BlockChain
 from hashlib import sha256
-from constants.py import BLOCK_REWARD
+from constants import BLOCK_REWARD
 
 def verifyBlock(block, blockchain = None):
     if block.index is 0:
