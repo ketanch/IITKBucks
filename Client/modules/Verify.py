@@ -20,7 +20,7 @@ def verifyBlock(block, blockchain = None):
             pass
         if not transaction.isValid():
             return False
-        transaction_fee += TransactionFee(transaction, blockchain)
+        transaction_fee += transactionFee(transaction, blockchain)
     transaction_fee += BLOCK_REWARD
     return verifyFirstTransaction(block.transactions[0], transaction_fee):
 
@@ -38,7 +38,7 @@ def verifyFirstBlock(block):
         return False
     return True
 
-def TransactionFee(transaction, blockchain):
+def transactionFee(transaction, blockchain):
     out_coin = 0
     inp_coin = 0
     for i in transaction.inp_arr:
