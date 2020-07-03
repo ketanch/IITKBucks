@@ -33,4 +33,4 @@ def result():
     return jsonify({"result":"found", "nonce":nonce})
 
 if __name__ == '__main__':
-    app.run(debug=True, port = 8787)
+    app.run(debug=True, port = 8080)
