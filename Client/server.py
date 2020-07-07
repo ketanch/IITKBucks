@@ -9,6 +9,7 @@ from random import randint
 from miner import Miner
 import time
 from hashlib import sha256
+from models.constants import *
 
 my_addr = '127.0.0.1'
 peers = []
