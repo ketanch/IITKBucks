@@ -14,7 +14,7 @@ class Miner(threading.Thread):
             if int(sha256(self.getHeader()).hexdigest(),16) <= int(block.target,16) or self.kill.is_set():
                 status_code = 200
                 break
-        return {"Status":status_code}
+        return {"status":status_code}
     
     def halt(self):
         self.kill.set()
