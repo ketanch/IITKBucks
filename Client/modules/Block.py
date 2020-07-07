@@ -1,5 +1,6 @@
 from Transaction import *
 import struct
+from hashlib import sha256
 
 class Block:
 
@@ -23,6 +24,13 @@ class Block:
             + self.nonce.to_bytes(8,'big')
         )
         return data
+    
+    def constructBody(self):
+        self.body = len(self.transactions).to_bytes(4, 'big')
+        for i in self.transactions:
+            data = transactionToByteArray(i)
+            self.body += len(data).to_bytes(4, 'big') + data
+        self.body_hash = sha256(self.body).hexdigest()
 
     def constructTransactions(self, data):
         transactions = []
