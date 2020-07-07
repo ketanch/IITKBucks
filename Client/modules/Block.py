@@ -54,10 +54,7 @@ class Block:
     def save(self):
         with open('blocks/{}.dat'.format(self.index),'wb') as f:
             f.write(self.blockToByte())
-            
-    def mine(self):
-        pass
-    
+
     def GenesisBlock(self):
         self.target = '0000000f00000000000000000000000000000000000000000000000000000000'
         self.parent_hash = '0000000000000000000000000000000000000000000000000000000000000000'
