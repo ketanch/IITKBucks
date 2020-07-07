@@ -44,7 +44,7 @@ class Block:
         self.timestamp = struct.unpack(">d",data[100:108])
         self.nonce = int.from_bytes(data[108:116],'big')
         self.body = data[116:]
-        self.transactions = constructTransactions(self.body)
+        self.transactions = self.constructTransactions(self.body)
         
     def blockToByte(self):
         data = (
