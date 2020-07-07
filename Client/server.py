@@ -8,6 +8,7 @@ from models.Verify import *
 from random import randint
 from miner import Miner
 import time
+from hashlib import sha256
 
 my_addr = '127.0.0.1'
 peers = []
