@@ -33,6 +33,10 @@ class Transaction:
     def id(self):
         return hashlib.sha256(transactionToByteArray(self)).hexdigest()
     
+    @property
+    def byte_length(self):
+        return len(transactionToByteArray(self))
+    
     def as_json(self):
         inp_data = []
         out_data = []
