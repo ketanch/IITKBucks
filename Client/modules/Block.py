@@ -22,6 +22,7 @@ class Block:
             + struct.pack(">d", self.timestamp)
             + self.nonce.to_bytes(8,'big')
         )
+        return data
 
     def constructTransactions(self, data):
         transactions = []
