@@ -19,6 +19,17 @@ def peer_limit_exceeded():
         return False
     return True
 
+def transaction_selector(pending_trans):
+    trans_list = []
+    total_size = 0
+    for i in pending_trans:
+        curr_len = i.byte_length
+        if total_size+curr_len > (1000000-116):
+            break
+        total_size += curr_len
+        trans_list.append(i)
+    return trans_list
+
 def find_new_peers():
     url = {"url":my_addr}
     for peer in potential_peers:
