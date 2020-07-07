@@ -6,6 +6,7 @@ from models.Block import Block
 from models.Transaction import Transaction
 from models.Verify import *
 from random import randint
+from miner import Miner
 
 my_addr = '127.0.0.1'
 peers = []
