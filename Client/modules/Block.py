@@ -51,6 +51,7 @@ class Block:
             self.getHeader()
             + self.body
         )
+        return data
         
     def save(self):
         with open('blocks/{}.dat'.format(self.index),'wb') as f:
