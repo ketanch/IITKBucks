@@ -99,6 +99,9 @@ def start_system():
     pending_trans_from_peers()
     start_mining()
 
+def post_mining_steps():
+    pass
+    
 @app.route('/getBlock/<int:block>', methods = ["GET"])
 def getBlock(block):
     if block < len(blockchain.chain[block]):
@@ -131,6 +134,9 @@ def new_block():
     new_block.blockFromByte(block_data)
     if not verifyBlock(new_block):
         return "Invalid Block sent!!", 500
+    _miner.halt()
+    post_mining_steps()
+    start_mining()
     blockchain.chain.append(new_block)
     return "Block successfully added.", 200
 
