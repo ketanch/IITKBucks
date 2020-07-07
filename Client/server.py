@@ -135,6 +135,7 @@ def new_block():
     if not verifyBlock(new_block):
         return "Invalid Block sent!!", 500
     _miner.halt()
+    _miner.join()
     post_mining_steps()
     start_mining()
     blockchain.chain.append(new_block)
