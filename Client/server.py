@@ -80,11 +80,24 @@ def pending_trans_from_peers():
         trans = Transaction()
         trans.from_json()
         blockchain.pendingTransactions.append(trans)
+        
+def start_mining():
+    transactions = []
+    while True:
+        if blockchain.pendingTransactions is not []:
+            transactions = transaction_selector(blockchain.pendingTransactions)
+            break
+        time.sleep(1)
+    block = Block(index = len(blockchain.chain),parent_hash = sha256(blockchain.chain[-1].getHeader).hexdigest(), transactions = transactions, target = TARGET)
+    block.constructBody()
+    _miner = Miner(block)
+    _miner.start()
 
 def start_system():
     find_new_peers()
     blocks_from_peers()
     pending_trans_from_peers()
+    start_mining()
 
 @app.route('/getBlock/<int:block>', methods = ["GET"])
 def getBlock(block):
