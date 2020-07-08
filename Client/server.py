@@ -16,6 +16,7 @@ peers = []
 peer_limit = 4
 potential_peers = []
 blockchain = BlockChain()
+_miner = Miner()
 
 def peer_limit_exceeded():
     if peer_limit > len(peers):
@@ -90,7 +91,7 @@ def start_mining():
         time.sleep(1)
     block = Block(index = len(blockchain.chain),parent_hash = sha256(blockchain.chain[-1].getHeader).hexdigest(), transactions = transactions, target = TARGET)
     block.constructBody()
-    _miner = Miner(block)
+    _miner.block = block
     _miner.start()
 
 def start_system():
