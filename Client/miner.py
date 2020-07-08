@@ -3,7 +3,7 @@ from hashlib import sha256
 from modules.Block import Block
 
 class Miner(threading.Thread):
-    def __init__(self, block):
+    def __init__(self, block = None):
         super().__init__()
         self.kill = threading.Event()
         self.block = block
@@ -12,7 +12,7 @@ class Miner(threading.Thread):
         status_code = 404
         for i in range(2**64):
             self.block.nonce = i
-            self.block.timestamp = time.time()
+            self.block.timestamp = time.time_ns()
             if int(sha256(self.getHeader()).hexdigest(),16) <= int(self.block.target,16) or self.kill.is_set():
                 status_code = 200
                 break
@@ -20,3 +20,7 @@ class Miner(threading.Thread):
     
     def halt(self):
         self.kill.set()
+        
+    def join(self):
+        super().join()
+        Miner.__init__(self)
