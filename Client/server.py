@@ -104,7 +104,11 @@ def start_system():
     start_mining()
 
 def post_mining_steps():
-    pass
+    #removing pending transactions
+    for i in temp_pending_trans:
+        blockchain.pendingTransactions.remove(i)
+        for j in i.inp_arr:
+            blockchain.unused_output.
     
 @app.route('/getBlock/<int:block>', methods = ["GET"])
 def getBlock(block):
