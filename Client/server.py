@@ -17,6 +17,7 @@ peer_limit = 4
 potential_peers = []
 blockchain = BlockChain()
 _miner = Miner()
+temp_pending_trans = []
 
 def peer_limit_exceeded():
     if peer_limit > len(peers):
@@ -24,6 +25,7 @@ def peer_limit_exceeded():
     return True
 
 def transaction_selector(pending_trans):
+    global temp_pending_trans
     trans_list = []
     total_size = 0
     for i in pending_trans:
@@ -32,6 +34,7 @@ def transaction_selector(pending_trans):
             break
         total_size += curr_len
         trans_list.append(i)
+    temp_pending_trans = trans_list.copy()
     return trans_list
 
 def find_new_peers():
