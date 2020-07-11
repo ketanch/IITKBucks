@@ -17,7 +17,6 @@ peer_limit = 4
 potential_peers = []
 blockchain = BlockChain()
 _miner = Miner()
-temp_pending_trans = []
 
 def peer_limit_exceeded():
     if peer_limit > len(peers):
@@ -25,7 +24,6 @@ def peer_limit_exceeded():
     return True
 
 def transaction_selector(pending_trans):
-    global temp_pending_trans
     trans_list = []
     total_size = 0
     for i in pending_trans:
@@ -34,7 +32,6 @@ def transaction_selector(pending_trans):
             break
         total_size += curr_len
         trans_list.append(i)
-    temp_pending_trans = trans_list.copy()
     return trans_list
 
 def find_new_peers():
@@ -103,12 +100,19 @@ def start_system():
     pending_trans_from_peers()
     start_mining()
 
-def post_mining_steps():
-    #removing pending transactions
-    for i in temp_pending_trans:
+def post_mining_steps(block):
+    for i in block.transactions:
         blockchain.pendingTransactions.remove(i)
         for j in i.inp_arr:
-            blockchain.unused_output.
+            del blockchain.unused_output[(j.transaction_ID, j.arr_index)]
+        for index,j in enumerate(i.out_arr):
+            blockchain.unused_output[(i.id, index)] = j
+        blockchain.chain.append(block)
+        block.save()
+    for peer in peers:
+        header = {'Content-Type':'application/octet-stream'}
+        req = requests.post('{}/newBlock'.format(peer), headers=header, data=block.blockToByte())
+        print(req.text)
     
 @app.route('/getBlock/<int:block>', methods = ["GET"])
 def getBlock(block):
