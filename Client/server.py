@@ -148,7 +148,7 @@ def new_block():
         return "Invalid Block sent!!", 500
     _miner.halt()
     _miner.join()
-    post_mining_steps()
+    post_mining_steps(new_block)
     start_mining()
     blockchain.chain.append(new_block)
     return "Block successfully added.", 200
