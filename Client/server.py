@@ -10,6 +10,7 @@ from miner import Miner
 import time
 from hashlib import sha256
 from models.constants import *
+import json
 
 my_addr = '127.0.0.1'
 peers = []
@@ -17,6 +18,9 @@ peer_limit = 4
 potential_peers = []
 blockchain = BlockChain()
 _miner = Miner()
+alias = {}
+mapper = {}
+
 
 def peer_limit_exceeded():
     if peer_limit > len(peers):
@@ -113,7 +117,46 @@ def post_mining_steps(block):
         header = {'Content-Type':'application/octet-stream'}
         req = requests.post('{}/newBlock'.format(peer), headers=header, data=block.blockToByte())
         print(req.text)
-    
+
+@app.route('/addAlias', methods = ["POST"])
+def addAlias():
+    global alias
+    data = request.get_json()
+    temp_alias = data['alias']
+    publicKey = data['publicKey']
+    if temp_alias in alias.keys():
+        return "Alias already added.", 400
+    alias[temp_alias] = publicKey
+    for peer in peers:
+        req = requests.post('{}/addAlias'.format(peer), headers = {'Content-Type':'application/json'}, json = json.dumps(data))
+    return "Alias added successfully :)", 200
+
+@app.route('/getPublicKey', methods = ["GET", "POST"])
+def getPublicKey():
+    temp_alias = request.get_json()['alias']
+    try:
+        return jsonify({"publicKey":alias[temp_alias]})
+    except:
+        return "Alias currently not set :)", 200
+
+@app.route('/getUnusedOutputs', methods = ["POST"])
+def getUnusedOutputs():
+    data = request.get_json()
+    temp_alias = data.get('alias', None)
+    publicKey = data.get('publicKey', None)
+    if temp_alias is None and publicKey is None:
+        return "Send something valid!", 404
+    if temp_alias is None:
+        temp_alias = next((k for k in alias if alias[k] == publicKey), None)
+        if temp_alias is None:
+            return "Alias for this public key doesn't exist.", 200
+    unusedOutputs = mapper[temp_alias]
+    out = []
+    for i in unusedOutputs:
+        dic = {"transactionId":i[0], "index":i[1], "amount":blockchain.unused_output[i].coin}
+        out.append(dic)
+    return jsonify({"unusedOutputs":out})
+
 @app.route('/getBlock/<int:block>', methods = ["GET"])
 def getBlock(block):
     if block < len(blockchain.chain[block]):
