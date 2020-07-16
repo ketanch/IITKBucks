@@ -149,13 +149,13 @@ def getUnusedOutputs():
     if temp_alias is None:
         temp_alias = next((k for k in alias if alias[k] == publicKey), None)
         if temp_alias is None:
-            return "Alias for this public key doesn't exist.", 200
+            return "Alias for this public key doesn't exist.", 404
     unusedOutputs = mapper[temp_alias]
     out = []
     for i in unusedOutputs:
         dic = {"transactionId":i[0], "index":i[1], "amount":blockchain.unused_output[i].coin}
         out.append(dic)
-    return jsonify({"unusedOutputs":out})
+    return jsonify({"unusedOutputs":out}), 200
 
 @app.route('/getBlock/<int:block>', methods = ["GET"])
 def getBlock(block):
