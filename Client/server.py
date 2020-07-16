@@ -1,10 +1,10 @@
 from flask import Flask, jsonify, Response, request
-from models.BlockChain import *
+from modules.BlockChain import *
 app = Flask(__name__)
 import requests
-from models.Block import Block
-from models.Transaction import Transaction
-from models.Verify import *
+from modeules.Block import Block
+from modules.Transaction import Transaction
+from modules.Verify import *
 from random import randint
 from miner import Miner
 import time
